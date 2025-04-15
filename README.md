@@ -124,3 +124,51 @@ To run the application and see the standardized scores:
    ```
 
 The output will include the raw JSON data with the standardized scores and a count of live matches.
+
+## Code 0 Match IDs
+
+The `match_data_fetch.py` script fetches match data and filters it to retain only the `id` fields associated with `code: 0`. These IDs are referred to as "Code 0 Match IDs."
+
+The script also prints the total number of Code 0 Match IDs fetched.
+
+# Match Data Fetching and Processing
+
+This project fetches match data and processes it in two main steps:
+
+## Step 1: Fetch Match IDs
+- The `match_data_fetch.py` script fetches match IDs associated with `code: 0` from the endpoint `https://api.thesports.com/v1/football/match/detail_live`.
+- The script lists the fetched IDs and logs the total count.
+
+## Step 2: Fetch Detailed Data for Each Match ID
+- Using the fetched match IDs, the script makes asynchronous HTTP requests to the endpoint `https://api.thesports.com/v1/football/match/recent/list`.
+- Each match ID is processed individually, and detailed match data is retrieved and displayed.
+
+## Features
+- **Asynchronous Requests**: The project uses `httpx` and `asyncio` to fetch detailed match data concurrently, improving efficiency.
+- **Logging**: Logs HTTP requests and responses for better traceability.
+- **Rich Output**: Uses the `rich` library for pretty-printing data in the terminal.
+
+## How to Run
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Run the `match_data_fetch.py` script:
+   ```bash
+   python3 match_data_fetch.py
+   ```
+3. View the fetched match IDs and their detailed data in the terminal.
+
+## Files
+- `match_data_fetch.py`: Main script for fetching and processing match data.
+- `app.py`: Additional processing logic for match data.
+- `README.md`: Project documentation.
+- `requirements.txt`: List of dependencies.
+
+## Requirements
+- Python 3.10 or higher
+- Libraries: `httpx`, `rich`
+
+## Notes
+- Ensure the API credentials (`user` and `secret`) are valid and have access to the required endpoints.
+- The project is designed to handle large datasets efficiently using asynchronous programming.

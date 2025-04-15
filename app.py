@@ -134,5 +134,9 @@ def main():
         print("[bold green]TIME STAMP:[/bold green]", timestamp)
         print("\n")
 
+    # Count the number of live games (match datasets) and print at the bottom
+    total_live_games = len(data.get("results", []))
+    print(f"[bold yellow]Total Live Games:[/bold yellow] {total_live_games}\n")
+
 if __name__ == "__main__":
     main()
